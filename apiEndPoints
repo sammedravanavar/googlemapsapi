@@ -1,0 +1,62 @@
+
+axios
+  .get('http://localhost:5000/api/placeSearch', { params: { placeName: 'Mahaveer Bhavan' } })
+  .then(response => {
+    console.log(response.data);
+  });
+
+axios
+  .get('http://localhost:5000/api/geoCode', { params: { address: 'Hyderabad' } })
+  .then(response => {
+    console.log(response.data);
+  });
+
+axios
+  .get('http://localhost:5000/api/textSearch', {
+    params: {
+      query: 'Sapient', // required
+      location: '12.9716,77.5946',
+      radius: '1000',
+      opennow: '',
+      type: 'restaurant'
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+  });
+
+axios
+  .get('http://localhost:5000/api/nearBySearch', {
+    params: {
+      location: '12.9716,77.5946', // required
+      radius: '1000',
+      type: 'restaurant',
+      keyword: '',
+      opennow: 'true'
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+  });
+
+axios
+  .get('http://localhost:5000/api/placeDetails', {
+    params: {
+      placeId: 'ChIJ_2-bUX8vsDsRhPdTnPCW9cc'
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+  });
+
+axios
+  .get('http://localhost:5000/api/autocomplete', {
+    params: {
+      input: 'Sapient', // required
+      location: '12.9716,77.5946',
+      radius: '1000'
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+  });
