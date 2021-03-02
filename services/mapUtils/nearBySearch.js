@@ -1,18 +1,21 @@
 const { api, apiKey, makeCall, constructParams } = require('./helpers');
+// const distanceMatrix = require('./distanceMatrix');
 
-async function nearBySearch({ location, radius, type, keyword, opennow }) {
+async function nearBySearch({ location, radius, type, keyword, opennow, rankby }) {
   const endPoint = `${api}/place/nearbysearch/json?${constructParams({
     location,
-    radius,
+    radius: rankby ? '': radius,
     type,
     keyword,
-    opennow
+    opennow,
+    rankby
   })}key=${apiKey}`;
   console.log(endPoint);
   const response = await makeCall(endPoint);
   const { status, results } = response.data;
   return status === 'OK'
-    ? results.map(result => {
+    ? {
+      results: results.map(result => {
         const {
           business_status,
           geometry: {
@@ -30,22 +33,24 @@ async function nearBySearch({ location, radius, type, keyword, opennow }) {
           vicinity
         } = result;
         return {
-          business_status,
+          name,
           lat,
           lng,
-          icon,
-          name,
+          // distance: await distanceMatrix(location, `${lat},${lng}`), 
+          vicinity,
+          business_status,
           open_now: opening_hours ? opening_hours.open_now : 'NA',
+          icon,
           photos,
           place_id,
           price_level,
           rating,
           types,
           user_ratings_total,
-          vicinity,
           details: result
         };
       })
+    }
     : status;
 }
 

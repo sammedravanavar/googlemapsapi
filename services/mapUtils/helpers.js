@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const apiKey = '<API_KEY>';
+const apiKey = 'AIzaSyAks532R6bhVllJruQq7ygBT4E89MsWeEU';
 const api = `https://maps.googleapis.com/maps/api`;
 
 function constructParams(params) {

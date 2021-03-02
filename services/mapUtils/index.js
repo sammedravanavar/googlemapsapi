@@ -4,6 +4,7 @@ const { nearBySearch } = require('./nearBySearch');
 const { geoCode } = require('./geoCode');
 const { textSearch } = require('./textSearch');
 const { autocomplete } = require('./autocomplete');
+const { distancematrix } = require('./distanceMatrix');
 
 module.exports = {
   placeSearch,
@@ -11,5 +12,6 @@ module.exports = {
   geoCode,
   textSearch,
   autocomplete,
-  nearBySearch
+  nearBySearch,
+  distancematrix
 };
